@@ -1,2 +1,6 @@
-java-codes/src/com/client/*
 java-codes/bin/*
+java-codes/.classpath
+java-codes/.project
+java-codes/.project~
+java-codes/.settings/*
+.metadata/*
