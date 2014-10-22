@@ -29,10 +29,6 @@ public class Node {
 		this.level = level;
 	}
 	
-	public String toString(){
-		return data.toString();
-	}
-	
 	public boolean isLeafNode(){
 		return leftChild == null && rightChild == null;
 	}
@@ -47,5 +43,17 @@ public class Node {
 	
 	public boolean isComplete(){
 		return leftChild != null && rightChild != null;
+	}
+	
+	public String toString(){
+		return data.toString();
+	}
+	
+	public void display(){
+		System.out.print("(" + data + ")");
+	}
+	
+	public void displayNodeLevel(){
+		System.out.print("(D:" + data + ",L:" + level + ")" );
 	}
 }
