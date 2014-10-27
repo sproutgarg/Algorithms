@@ -1,5 +1,7 @@
 package binary_tree;
 
+import java.util.List;
+
 public class Node {
 	public Integer data;
 	public Integer level;
@@ -55,5 +57,17 @@ public class Node {
 	
 	public void displayNodeLevel(){
 		System.out.print("(D:" + data + ",L:" + level + ")" );
+	}
+	
+	public static void displayNodeList(List<Node> nodeList, boolean isLeftToRight){
+		if(isLeftToRight){
+			for(Node n : nodeList){
+				n.displayNodeLevel();
+			}
+		}else{
+			for(int i = nodeList.size()-1; i>=0;i--){
+				nodeList.get(i).displayNodeLevel();
+			}
+		}
 	}
 }
