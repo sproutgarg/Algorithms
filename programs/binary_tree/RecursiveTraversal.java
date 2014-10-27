@@ -1,6 +1,8 @@
 package binary_tree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class RecursiveTraversal {
@@ -60,26 +62,37 @@ public class RecursiveTraversal {
 	}
 	
 	public static void levelSpiralOrder(Queue<Node> queue, boolean isLeftToRight){
-		do{
-			
-		}while(false);
-		Node n = queue.poll();
-		if(n == null){
+		if(queue.isEmpty()){
 			return;
 		}
-		n.displayNodeLevel();
-		if(n.hasLeftChild()){
-			n.leftChild.level = n.level + 1;
-			queue.add(n.leftChild);
+		
+		//initialization of loop counter variable
+		Node n = queue.poll();
+		int currentLevel = n.level;
+		List<Node> levelNodeList = new ArrayList<>();
+		levelNodeList.add(n);
+		while(true){
+			if(n.hasLeftChild()){
+				n.leftChild.level = currentLevel + 1;
+				queue.add(n.leftChild);
+			}
+			if(n.hasRightChild()){
+				n.rightChild.level = currentLevel + 1;
+				queue.add(n.rightChild);
+			}
+			
+			//exit condition of the loop
+			if(queue.isEmpty() || queue.peek().level != currentLevel){
+				break;
+			}
+			
+			//counter update operation
+			n = queue.poll();
+			levelNodeList.add(n);
 		}
-		if(n.hasRightChild()){
-			n.rightChild.level = n.level + 1;
-			queue.add(n.rightChild);
-		}
+		Node.displayNodeList(levelNodeList, isLeftToRight);
 		levelSpiralOrder(queue, !isLeftToRight);
 	}
-	
-	
 	
 	public static void main(String...args){
 		tc1();
@@ -102,13 +115,13 @@ public class RecursiveTraversal {
 		
 		System.out.print("level order traversal : ");
 		Queue<Node> q = new LinkedList<Node>();
-		tree.level = 0;
+		tree.level = 1;
 		q.add(tree);
 		levelOrder(q);System.out.println();
 		
 		q.add(tree);
 		System.out.print("Level spiral order traversal : ");
-		levelSpiralOrder(q, true);System.out.println();
+		levelSpiralOrder(q, false);System.out.println();
 		System.out.println("queue : " + q);
 		
 		
