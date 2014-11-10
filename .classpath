@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="src" path=".settings"/>
+	<classpathentry kind="src" path="programs"/>
+	<classpathentry kind="src" path="graph_input_files"/>
+	<classpathentry kind="lib" path="C:/Java/jre1.8.0.2_25/lib/rt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ankugarg/Downloads/javamail1_4_6/javamail-1.4.6/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ankugarg/Downloads/commons-collections4-4.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

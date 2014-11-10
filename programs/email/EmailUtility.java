@@ -64,8 +64,8 @@ package email;
  		return true;
  	}
  	public static void main(String...args){
- 		String from="aarumugampalanis@paypal.com";//ankugarg@paypal.com";
- 		String to="aarumugampalanis@paypal.com";//"ankugarg@paypal.com";
+ 		String from="ankugarg@paypal.com";//ankugarg@paypal.com";
+ 		String to="ankugarg@paypal.com";//"ankugarg@paypal.com";
  		String cc[] = null;
  		String subject="GOD Says";
  		String htmlText = "@@@@@@@~~~~~~~~~~!!!ENJOY WEEKEND!!!~~~~~~~~~~@@@@@@@@";
