@@ -2,9 +2,10 @@ package binary_tree;
 
 import java.util.List;
 
-public class Node {
+public class Node implements java.lang.Comparable<Node>{
 	public Integer data;
 	public Integer level;
+	public boolean visited;
 	public Node leftChild;
 	public Node rightChild;
 
@@ -16,12 +17,16 @@ public class Node {
 	
 	public Node(Integer data){
 		this.data = data;
+		this.level = 0;
+		this.visited = false;
 	}
 	
 	public Node(Integer data, Node leftChild, Node rightChild){
 		this.data = data;
 		this.leftChild = leftChild;
 		this.rightChild = rightChild;
+		this.level = 0;
+		this.visited = false;
 	}
 	
 	public Node(Integer data, Node leftChild, Node rightChild, Integer level){
@@ -29,6 +34,7 @@ public class Node {
 		this.leftChild = leftChild;
 		this.rightChild = rightChild;
 		this.level = level;
+		this.visited = false;
 	}
 	
 	public boolean isLeafNode(){
@@ -69,5 +75,13 @@ public class Node {
 				nodeList.get(i).displayNodeLevel();
 			}
 		}
+	}
+	
+	@Override
+	public int compareTo(Node n) {
+		if(this.data == null || n == null || n.data == null){
+			return -1;
+		}
+		return this.data.compareTo(n.data);
 	}
 }
