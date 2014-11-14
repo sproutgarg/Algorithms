@@ -7,6 +7,15 @@ package binary_tree;
  */
 public class Trees {
 
+	private StringBuilder preOrder;
+	private StringBuilder inOrder;
+	private StringBuilder postOrder;
+	
+	public Trees(){
+		preOrder = new StringBuilder();
+		inOrder = new StringBuilder();
+		postOrder = new StringBuilder();
+	}
 	/**
 	 * TC : O(n)
 	 * @question: Given a binary tree and two level numbers ‘low’ and ‘high’,
@@ -148,7 +157,90 @@ For example, in the following case, Tree1 is a subtree of Tree2.
         c
 	 */
 	public static boolean isSubtree(Node t, Node s){
-		return true;
+		//there are two implementations for checking subtree
+		
+		//APPROACH - I
+		//generate pre-order and in-order for both tree and check whether 't' contains 's'
+		// this approach has TC : O(n)
+		return checkSubtreeByOrder(t, s);
+		
+		//APPROACH - II
+		//find the occurrence of root node of 's' in 't', then compare each element of both the trees
+		// this approach has TC : O(n^2)
+		//checkSubtreeByComparsion(t, s);
+	}
+	
+	/**
+	 * TC : O(n), if contains takes O(n) which can be achieved via KMP Algorithm 
+	 * @param t
+	 * @param s
+	 * @return
+	 */
+	public static boolean checkSubtreeByOrder(Node t, Node s){
+		if(s == null)	return true;
+		if(t == null)	return false;
+
+		Trees tree = new Trees();
+		String tPreOrder = tree.getPreOrder(t).toString();
+		tree.preOrder = new StringBuilder();
+		String sPreOrder = tree.getPreOrder(s).toString();
+		
+		if(!tPreOrder.contains(sPreOrder)){
+			return false;
+		}
+		
+		String tInOrder = tree.getInOrder(t).toString();
+		tree.inOrder = new StringBuilder();
+		String sInOrder = tree.getInOrder(s).toString();
+		return tInOrder.contains(sInOrder);
+	}
+	public StringBuilder getPreOrder(Node n) {
+		if (n == null) {
+			return new StringBuilder();
+		}
+		preOrder.append(n.toString()).append(" ");
+		if (n.hasLeftChild()) {
+			getPreOrder(n.leftChild);
+		}
+		if (n.hasRightChild()) {
+			getPreOrder(n.rightChild);
+		}
+		return preOrder;
+	}
+
+	public StringBuilder getInOrder(Node n) {
+		if (n == null) {
+			return new StringBuilder();
+		}
+		if (n.hasLeftChild()) {
+			getInOrder(n.leftChild);
+		}
+		inOrder.append(n.toString()).append(" ");
+		if (n.hasRightChild()) {
+			getInOrder(n.rightChild);
+		}
+		return inOrder;
+	}
+
+	public StringBuilder getPostOrder(Node n) {
+		if (n == null) {
+			return new StringBuilder();
+		}
+		if (n.hasLeftChild()) {
+			getPostOrder(n.leftChild);
+		}
+		if (n.hasRightChild()) {
+			getPostOrder(n.rightChild);
+		}
+		postOrder.append(n.toString()).append(" ");
+		return postOrder;
+	}
+
+	
+	private static boolean checkSubtreeByComparsion(Node t, Node s){
+		if(s == null)	return true;
+		if(t == null)	return false;
+		return false;
 	}
 
 	/**
@@ -226,12 +318,15 @@ For example, in the following case, Tree1 is a subtree of Tree2.
 		t1.rightChild.leftChild = new Node(3);
 		t1.rightChild.leftChild.leftChild = new Node(6);
 		t1.rightChild.rightChild = new Node(4);
-		TreeTraversal.inOrder(t1);
-		System.out.println();
-		
-		testAreSiblings(t1);
-		testLevel(t1);
-		testCousins(t1);
+		//TreeTraversal.inOrder(t1);
+		Trees tree = new Trees();
+		System.out.println("inorder : "+tree.getInOrder(t1)+", postorder : "+tree.getPostOrder(t1)+", preorder : "+tree.getPreOrder(t1));
+		tree.preOrder = new StringBuilder();
+		System.out.println("pre oder of subtree : " + tree.getPreOrder(t1.leftChild));
+		System.out.println("test subtree : " + isSubtree(t1, t1.leftChild));
+//		testAreSiblings(t1);
+//		testLevel(t1);
+//		testCousins(t1);
 	}
 	private static void testCousins(Node t1){
 		System.out.println("areCousins 3,1: " + areCousins(t1, new Node(3), new Node(1)));
