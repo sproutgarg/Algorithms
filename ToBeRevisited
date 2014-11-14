@@ -1,0 +1,21 @@
+ARRAY
+bucket sort--> involves insertion sort of link list OR ordered data structure like min/max heap
+remove 2 min gt max --> dynamic programming to optimize the solution from expo to quadratic
+kth smallest element --> requires heapify ELSE can be implemented via merge algo
+median of 2 arrays --> binary search approach went wrong 
+
+Sort n numbers in range from 0 to n^2 – 1 in linear time  --> radix sort + counting sort
+suffix array --> from coursera tutorial (better time complexity)
+Count all possible paths from top left to bottom right of a mXn matrix --> dynamic programming to optimize the solution
+Rearrange an array so that arr[i] becomes arr[arr[i]] with O(1) extra space  --> unable to understand the problem
+
+
+TREE
+passing information in N-ARY tree in minimum iteration
+
+ENHANCEMENTS
+countmultiples for given 'N', generalize 
+
+CONCEPTS TO LEARN
+heapify 
+KMP Algorithm to implement subString() or Searching for patterns
