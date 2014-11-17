@@ -5,9 +5,13 @@ import java.util.List;
 public class Node implements java.lang.Comparable<Node>{
 	public Integer data;
 	public Integer level;
+	public Integer horizontalDistance;
 	public boolean visited;
 	public Node leftChild;
 	public Node rightChild;
+	public Node next;
+	public Node previous;
+	public Node child;
 
 	/*
 	 * By Default instance references are initialized with null
@@ -17,7 +21,6 @@ public class Node implements java.lang.Comparable<Node>{
 	
 	public Node(Integer data){
 		this.data = data;
-		this.level = 0;
 		this.visited = false;
 	}
 	
@@ -25,7 +28,6 @@ public class Node implements java.lang.Comparable<Node>{
 		this.data = data;
 		this.leftChild = leftChild;
 		this.rightChild = rightChild;
-		this.level = 0;
 		this.visited = false;
 	}
 	
@@ -63,6 +65,10 @@ public class Node implements java.lang.Comparable<Node>{
 	
 	public void displayNodeLevel(){
 		System.out.print("(D:" + data + ",L:" + level + ")" );
+	}
+	
+	public void displayNodeHD(){
+		System.out.print("(D:" + data+", HD:" + horizontalDistance + ")");
 	}
 	
 	public static void displayNodeList(List<Node> nodeList, boolean isLeftToRight){
