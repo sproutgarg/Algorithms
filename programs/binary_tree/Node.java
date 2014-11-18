@@ -82,6 +82,14 @@ public class Node implements java.lang.Comparable<Node>{
 			}
 		}
 	}
+	public static void printLinkList(Node list){
+		while(list != null){
+			list.display();
+			System.out.print("--->");
+			list = list.next;
+		}
+		System.out.println("NULL");
+	}
 	
 	@Override
 	public int compareTo(Node n) {
