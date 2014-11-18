@@ -9,9 +9,13 @@ suffix array --> from coursera tutorial (better time complexity)
 Count all possible paths from top left to bottom right of a mXn matrix --> dynamic programming to optimize the solution
 Rearrange an array so that arr[i] becomes arr[arr[i]] with O(1) extra space  --> unable to understand the problem
 
+heap sort
 
 TREE
 passing information in N-ARY tree in minimum iteration
+
+LINKED LIST
+quick sort on singly and doubly link list
 
 ENHANCEMENTS
 countmultiples for given 'N', generalize 

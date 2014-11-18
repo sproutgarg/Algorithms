@@ -33,14 +33,32 @@ For example, for the above input list, output list should be 5->7->8->10->19->20
 	 * but it should not be considered as of tree element
 	 * 
 	 */
-	public static Node flatteningMutlilevelLinkedList(Node root){
+	public static Node flatteningMutlilevelLinkedListR(Node root){
 		if(root == null || root.rightChild == null){
 			return root;
 		}
-		return SingleLinkedList.mergeSortedListR(root, flatteningMutlilevelLinkedList(root.rightChild));
+		return SingleLinkedList.mergeSortedListR(root, flatteningMutlilevelLinkedListR(root.rightChild));
 	}
+	public static Node flatteningMutlilevelLinkedListI(Node root){
+		if(root == null || root.rightChild == null){
+			return root;
+		}
+		Node fl;
+		fl = root;
+		Node n = root;
+		while(n!= null){
+			fl = SingleLinkedList.mergeSortedListR(fl, n.rightChild);
+			n = n.rightChild;
+		}
+		return fl;
+	}
+		
 	
 	public static void main(String...args){
+		testFlatteningMutlilevelLinkedListR();
+		testFlatteningMutlilevelLinkedListI();
+	}
+	private static void testFlatteningMutlilevelLinkedListI(){
 		Node ml = new Node(5);
 		ml.next = new Node(7);
 		ml.next.next = new Node(8);
@@ -48,17 +66,39 @@ For example, for the above input list, output list should be 5->7->8->10->19->20
 		
 		ml.rightChild = new Node(10);
 		ml.rightChild.next = new Node(20);
-		/*
+		
 		ml.rightChild.rightChild = new Node(19);
 		ml.rightChild.rightChild.next = new Node(22);
 		ml.rightChild.rightChild.next.next = new Node(50);
-		/*
+		
 		ml.rightChild.rightChild.rightChild = new Node(28);
 		ml.rightChild.rightChild.rightChild.next = new Node(35);
 		ml.rightChild.rightChild.rightChild.next.next = new Node(40);
 		ml.rightChild.rightChild.rightChild.next.next.next = new Node(45);
-		*/
-		Node fl = flatteningMutlilevelLinkedList(ml);
+
+		Node f = flatteningMutlilevelLinkedListI(ml);
+		Node.printLinkList(f);
+	}
+	
+	private static void testFlatteningMutlilevelLinkedListR(){
+		Node ml = new Node(5);
+		ml.next = new Node(7);
+		ml.next.next = new Node(8);
+		ml.next.next.next = new Node(30);
+		
+		ml.rightChild = new Node(10);
+		ml.rightChild.next = new Node(20);
+		
+		ml.rightChild.rightChild = new Node(19);
+		ml.rightChild.rightChild.next = new Node(22);
+		ml.rightChild.rightChild.next.next = new Node(50);
+		
+		ml.rightChild.rightChild.rightChild = new Node(28);
+		ml.rightChild.rightChild.rightChild.next = new Node(35);
+		ml.rightChild.rightChild.rightChild.next.next = new Node(40);
+		ml.rightChild.rightChild.rightChild.next.next.next = new Node(45);
+		
+		Node fl = flatteningMutlilevelLinkedListR(ml);
 		Node.printLinkList(fl);
 	}
 }

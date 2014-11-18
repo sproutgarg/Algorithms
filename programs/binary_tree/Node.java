@@ -82,6 +82,7 @@ public class Node implements java.lang.Comparable<Node>{
 			}
 		}
 	}
+	
 	public static void printLinkList(Node list){
 		while(list != null){
 			list.display();
@@ -89,6 +90,15 @@ public class Node implements java.lang.Comparable<Node>{
 			list = list.next;
 		}
 		System.out.println("NULL");
+	}
+	
+	public static long getListLength(Node list){
+		long length = 0L;
+		while(list != null){
+			length++;
+			list = list.next;
+		}
+		return length;
 	}
 	
 	@Override

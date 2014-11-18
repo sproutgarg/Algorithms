@@ -7,12 +7,12 @@ import binary_tree.Node;
 
 /**
  * @author ankugarg
- *
  */
 public class SingleLinkedList {
 
 	/**
-	 * question : Given a singly linked list, swap kth node from beginning with
+	 * @question : Pairwise swap elements of a given linked list by changing links 
+	 * Given a singly linked list, swap kth node from beginning with
 	 * kth node from end. Swapping of data is not allowed, only pointers should
 	 * be changed. This requirement may be logical in many situations where the
 	 * linked list data part is huge
@@ -21,15 +21,65 @@ public class SingleLinkedList {
 	 * cases.
 	 * 
 	 * Let X be the kth node from beginning and Y be the kth node from end.
-	 * Following are the interesting cases that must be handled. 1) Y is next to
-	 * X 2) X is next to Y 3) X and Y are same 4) X and Y don’t exist (k is more
-	 * than number of nodes in linked list)
+	 * Following are the interesting cases that must be handled. 
+	 * 1) Y is next to X 
+	 * 2) X is next to Y 
+	 * 3) X and Y are same 
+	 * 4) X and Y don’t exist (k is more than number of nodes in linked list)
 	 * 
-	 * @param list
-	 * @param k
+	 * @param list is link list in which swap has to happen
+	 * @param k is position
 	 */
-	public static void swapKthNodeFromStartAndEnd(Node list, int k){
+	public static Node swapKthNodeFromStartAndEnd(Node list, long k){
+		if(list == null)	return list;
+		long n = Node.getListLength(list);
+		//position out of bound OR attempt to swap middle element of the list (whose length will be obviously ODD)
+		if( k < 1 || n < k || (2*k - 1 == n) )	return list;
 		
+		Node x = list, previousX = null, y = list, previousY = null;
+		for(int i=0;i<k-1;i++){
+			previousX = x;
+			x = x.next;
+		}
+		for(int i=0;i<n-k;i++){
+			previousY = y;
+			y = y.next;
+		}		
+		if(previousY == null){ // k==n, then swap X and Y
+			Node t = y; y=x; x=t;
+			t=previousX; previousX = previousY; previousY = t;
+		}
+		if(previousX == null){ // k==1
+			list = y;
+			if(previousY == x){ // length of list is 2
+				y.next = x;
+				x.next = null; 
+			}else{
+				previousY.next = x;
+				Node t = x.next;
+				x.next = y.next;
+				y.next = t;
+			}
+			return list;
+		}
+
+		if(y.next == x){ // X is next to Y
+			Node t = y; y=x; x=t;
+			t=previousX; previousX = previousY; previousY = t;			
+		}
+		if(x.next == y){ // Y is next to X
+			previousX.next = y;
+			x.next = y.next;
+			y.next = x;
+			return list;
+		}else{// all other cases where X and Y are not at edges/corner or not next to each other
+			previousX.next = y;
+			Node t = x.next;
+			x.next = y.next;
+			previousY.next = x;
+			y.next = t;
+			return list;
+		}
 	}
 	
 	public static Node mergeSort(Node list){
@@ -44,7 +94,7 @@ public class SingleLinkedList {
 	 * 
 	 * below merge can also be implemented in iterative manner
 	 */
-	public static Node mergeListR(Node a, Node b){
+	public static Node mergeSortedListR(Node a, Node b){
 		if(a == null){
 			return b;
 		}
@@ -54,18 +104,15 @@ public class SingleLinkedList {
 		Node result;
 		if(a.data <= b.data){
 			result = a;
-			result.next = mergeListR(a.next, b);
+			result.next = mergeSortedListR(a.next, b);
 		}else{
 			result = b;
-			result.next = mergeListR(a, b.next);
+			result.next = mergeSortedListR(a, b.next);
 		}
 		return result;
 	}
 	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+	private static void testmergeSortedListR(){
 		Node p = new Node(10);
 		p.next = new Node(20);
 		p.next.next = new Node(30);
@@ -76,7 +123,31 @@ public class SingleLinkedList {
 		
 		Node.printLinkList(p);
 		Node.printLinkList(q);
-		Node.printLinkList(mergeListR(p, q));
+		Node.printLinkList(mergeSortedListR(p, q));
+	}
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		testmergeSortedListR();
+		testSwap();
+	}
+	
+	private static void testSwap(){
+		Node l = new Node(1);
+		l.next = new Node(2);
+		l.next.next = new Node(3);
+		l.next.next.next = new Node(4);
+		l.next.next.next.next = new Node(5);
+		l.next.next.next.next.next = new Node(6);
+		Node.printLinkList(l);
+		l = swapKthNodeFromStartAndEnd(l, 1);		Node.printLinkList(l);
+		l = swapKthNodeFromStartAndEnd(l, 2);		Node.printLinkList(l);
+		l = swapKthNodeFromStartAndEnd(l, 3);		Node.printLinkList(l);
+		l = swapKthNodeFromStartAndEnd(l, 4);		Node.printLinkList(l);
+		l = swapKthNodeFromStartAndEnd(l, 5);		Node.printLinkList(l);
+		l = swapKthNodeFromStartAndEnd(l, 6);		Node.printLinkList(l);
+		l = swapKthNodeFromStartAndEnd(l, 7);		Node.printLinkList(l);
 	}
 
 }
