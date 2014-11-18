@@ -101,6 +101,14 @@ public class Node implements java.lang.Comparable<Node>{
 		return length;
 	}
 	
+	public static Node getLinkListTail(Node list){
+		if(list == null)	return null;
+		while(list.next != null){
+			list = list.next;
+		}
+		return list;
+	}
+	
 	@Override
 	public int compareTo(Node n) {
 		if(this.data == null || n == null || n.data == null){
