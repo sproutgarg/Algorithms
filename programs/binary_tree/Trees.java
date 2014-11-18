@@ -16,6 +16,7 @@ public class Trees {
 		inOrder = new StringBuilder();
 		postOrder = new StringBuilder();
 	}
+	
 	/**
 	 * TC : O(n)
 	 * @question: Given a binary tree and two level numbers ‘low’ and ‘high’,
@@ -274,6 +275,24 @@ For example, in the following case, Tree1 is a subtree of Tree2.
 			return l;
 		}
 		return evaluateLevel(root.rightChild, n, level + 1);
+	}
+	
+	/**
+	 * @param n
+	 * @param hd MUST be passed
+	 * and is always '0' for root node 
+	 */
+	public static void evaluateHorizontalDistance(Node n, Node minHD, Node maxHD, Integer hd){
+		if(n == null)	return;
+		n.horizontalDistance = hd;
+		if(minHD.horizontalDistance > n.horizontalDistance){
+			minHD = n;
+		}
+		if(maxHD.horizontalDistance < n.horizontalDistance){
+			maxHD = n;
+		}
+		evaluateHorizontalDistance(n.leftChild, minHD, maxHD, hd - 1);
+		evaluateHorizontalDistance(n.rightChild, minHD, maxHD, hd + 1);
 	}
 	
 	public static boolean areSiblings(Node root, Node a, Node b){
