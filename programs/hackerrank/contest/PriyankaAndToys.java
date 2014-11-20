@@ -3,6 +3,9 @@
  */
 package hackerrank.contest;
 
+import java.math.BigInteger;
+import java.util.Scanner;
+
 /**
  * @author ankugarg
  * @question : Your submission will run against only preliminary test cases.
@@ -68,16 +71,44 @@ public class PriyankaAndToys {
 	public static void printArray(int[] arr){
 		for(int i : arr)	System.out.print(i + "  ");
 	}
+
+	public static void algo(int[] toyWeight) {
+		int cost = 0;
+		if(toyWeight.length == 0){
+			return;
+		}
+		cost = 1;
+		int weight = toyWeight[0];
+		for (int i = 1; i < toyWeight.length; i++) {
+			if(toyWeight[i] - weight <= 4){
+				continue;
+			}else{
+				weight = toyWeight[i];
+				cost++;
+			}
+		}
+		System.out.println("cost : " +cost);
+	}
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		//testQuickSort();
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] toys = new int[n];
+		for(int i = 0;i < n; i++){
+			toys[i] = sc.nextInt();
+		}
+		java.util.Arrays.sort(toys);
+		algo(toys);
+	}
+	private static void testQuickSort(){
 		int[] arr = new int[]{160, 150, 140, 135, 35};
 		printArray(arr);
 		quickSort(arr, 0, arr.length-1);
 		System.out.println("\nafter sorting");
 		printArray(arr);
-		
 	}
 }
