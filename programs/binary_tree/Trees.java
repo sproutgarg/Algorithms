@@ -286,10 +286,10 @@ For example, in the following case, Tree1 is a subtree of Tree2.
 		if(n == null)	return;
 		n.horizontalDistance = hd;
 		if(minHD.horizontalDistance > n.horizontalDistance){
-			minHD = n;
+			minHD.horizontalDistance = n.horizontalDistance;
 		}
 		if(maxHD.horizontalDistance < n.horizontalDistance){
-			maxHD = n;
+			maxHD.horizontalDistance = n.horizontalDistance;
 		}
 		evaluateHorizontalDistance(n.leftChild, minHD, maxHD, hd - 1);
 		evaluateHorizontalDistance(n.rightChild, minHD, maxHD, hd + 1);
