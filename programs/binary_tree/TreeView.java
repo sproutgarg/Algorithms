@@ -1,6 +1,10 @@
 package binary_tree;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 public class TreeView {
 
@@ -16,16 +20,6 @@ public class TreeView {
 	 *            right child is horizontal distance of x plus 1.
 	 */
 	public static void topViewUnordered(){
-		
-	}
-	
-	public static void verticalOrderTraversal(Node n) {
-		Node minHD = n;
-		Node maxHD = n;
-		Trees.evaluateHorizontalDistance(n, minHD, maxHD, 0);
-		for(int hd = minHD.horizontalDistance; hd<=maxHD.horizontalDistance; hd++){
-			
-		}
 		
 	}
 
@@ -85,4 +79,6 @@ public class TreeView {
 		System.out.print("\nIN-ORDER AFTER : ");
 		TreeTraversal.inOrder(tree);
 	}
+
+
 }

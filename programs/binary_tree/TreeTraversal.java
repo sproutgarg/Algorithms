@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.TreeMap;
+import java.util.Map.Entry;
 
 public class TreeTraversal {
 
@@ -27,7 +29,7 @@ public class TreeTraversal {
 		if (n.hasLeftChild()) {
 			inOrder(n.leftChild);
 		}
-		n.displayNodeLevel();
+		n.displayNodeHD();
 		if (n.hasRightChild()) {
 			inOrder(n.rightChild);
 		}
@@ -94,12 +96,53 @@ public class TreeTraversal {
 		levelSpiralOrder(queue, !isLeftToRight);
 	}
 
-	public static void verticalOrder() {
-
+	
+	/**
+	 * 
+	 * @param tree
+	 * TC : O(n)
+	 * SC : O(n)
+	 */
+	public static void verticalOrderTraversal(Node tree) {
+		java.util.TreeMap<Integer, java.util.List<Node>> table = new TreeMap<>();
+		internalVerticalOrderTraversal(tree, 0, table);
+		for(Entry<Integer, java.util.List<Node>> col : table.entrySet()){
+			for(Node n : col.getValue()){
+				n.display();
+			}
+			System.out.println();
+		}
+	}
+	private static void internalVerticalOrderTraversal(Node tree, Integer hd, java.util.TreeMap<Integer, java.util.List<Node>> table){
+		if(tree == null){
+			return;
+		}
+		tree.horizontalDistance = hd;
+		if(table.containsKey(hd)){
+			((java.util.ArrayList<Node>)table.get(hd)).add(tree);
+		}else{
+			java.util.ArrayList<Node> temp = new ArrayList<>();
+			temp.add(tree);
+			table.put(hd, temp);
+		}
+		internalVerticalOrderTraversal(tree.leftChild, hd-1, table);
+		internalVerticalOrderTraversal(tree.rightChild, hd+1, table);
+	}
+	private static void testVerticalOrderTraversal(){
+		Node tree = new Node(10);
+		tree.rightChild = new Node(20);
+		tree.rightChild.leftChild = new Node(30);
+		tree.rightChild.rightChild = new Node(40);
+		tree.rightChild.rightChild.leftChild = new Node(50);
+		tree.rightChild.rightChild.rightChild = new Node(60);
+		System.out.print("INORDER BEFORE : "); TreeTraversal.inOrder(tree);
+		System.out.println("\nVERTICAL ORDER : ");verticalOrderTraversal(tree);
+		System.out.print("\nINORDER AFTER : "); TreeTraversal.inOrder(tree);
 	}
 
 	public static void main(String... args) {
 		tc1();
+		testVerticalOrderTraversal();
 	}
 
 	public static void tc1() {
