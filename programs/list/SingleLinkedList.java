@@ -3,6 +3,8 @@
  */
 package list;
 
+import java.util.HashSet;
+
 import binary_tree.Node;
 
 /**
@@ -10,6 +12,33 @@ import binary_tree.Node;
  */
 public class SingleLinkedList {
 
+	/**
+	 * Question : 
+	 * Write a removeDuplicates() function which takes a list and 
+	 * deletes any duplicate nodes from the list. The list is not sorted.
+		For example if the linked list is 12->11->12->21->41->43->21 
+		then removeDuplicates() should convert the list to 12->11->21->41->43.
+		
+		TC : O(N)
+		SC : O(N)
+		N is number of Nodes/elements in the link list
+		
+		this implementation modifies the original link list
+	 */
+	public static void removeDuplicates(Node list){
+		java.util.HashSet<Node> nodeSet = new HashSet<>();
+		Node previous = null;
+		while(list != null){
+			if(!nodeSet.add(list)){
+				previous.next = list.next;
+			}else{
+				previous = list;
+			}
+			list = list.next;
+		}
+		return;
+	}
+	
 	/**
 	 * TC : O(n), n is the length of the link list
 	 * @question : Pairwise swap elements of a given linked list by changing links 
@@ -113,25 +142,34 @@ public class SingleLinkedList {
 		return result;
 	}
 	
-	private static void testmergeSortedListR(){
-		Node p = new Node(10);
-		p.next = new Node(20);
-		p.next.next = new Node(30);
-		
-		Node q = new Node(5);
-		q.next = new Node(25);
-		q.next.next = new Node(125);
-		
-		Node.printLinkList(p);
-		Node.printLinkList(q);
-		Node.printLinkList(mergeSortedListR(p, q));
-	}
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
+		testRemoveDuplicates();
 		testmergeSortedListR();
 		testSwap();
+	}
+	
+	private static void testRemoveDuplicates(){
+		Node list = new Node(12);
+		list.next = new Node(20);
+		list.next.next = new Node(120);
+		list.next.next.next = new Node(120);
+		list.next.next.next.next = new Node(20);
+		Node.printLinkList(list);
+		removeDuplicates(list);
+		Node.printLinkList(list);
+				
+	}
+	
+	private static void testNodeComparsion(){
+		Node list = new Node(12);
+		Node n = new Node(12);
+		Node n2 = new Node(121);
+		System.out.println(list.equals(n));
+		System.out.println(list.equals(n2));
+		
+		Integer a = 9;
+		Integer b = 90;
+		System.out.println(a == b);
 	}
 	
 	private static void testSwap(){
@@ -151,4 +189,17 @@ public class SingleLinkedList {
 		l = swapKthNodeFromStartAndEnd(l, 7);		Node.printLinkList(l);
 	}
 
+	private static void testmergeSortedListR(){
+		Node p = new Node(10);
+		p.next = new Node(20);
+		p.next.next = new Node(30);
+		
+		Node q = new Node(5);
+		q.next = new Node(25);
+		q.next.next = new Node(125);
+		
+		Node.printLinkList(p);
+		Node.printLinkList(q);
+		Node.printLinkList(mergeSortedListR(p, q));
+	}
 }
