@@ -16,7 +16,7 @@ public class Node implements java.lang.Comparable<Node>{
 	/*
 	 * By Default instance references are initialized with null
 	 */
-	public Node(){
+	private Node(){
 	}
 	
 	public Node(Integer data){

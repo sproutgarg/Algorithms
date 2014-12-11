@@ -27,7 +27,7 @@ public class TreeTraversal {
 		if (n.hasLeftChild()) {
 			inOrder(n.leftChild);
 		}
-		n.display();
+		n.displayNodeLevel();
 		if (n.hasRightChild()) {
 			inOrder(n.rightChild);
 		}

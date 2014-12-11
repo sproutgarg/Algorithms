@@ -356,7 +356,6 @@ For example, in the following case, Tree1 is a subtree of Tree2.
 	}
 	
 	private static void testLevel(Node t1){
-		System.out.println("default level in new Node : " + new Node().level);
 		System.out.println("level of 6 : " + getLevel(t1, new Node(6)));
 		System.out.println("auto storage of levels for in between nodes : "+ t1.leftChild.leftChild.level);
 		System.out.println("level of 3 : " + getLevel(t1, t1.rightChild.leftChild));
