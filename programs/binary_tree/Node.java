@@ -116,4 +116,24 @@ public class Node implements java.lang.Comparable<Node>{
 		}
 		return this.data.compareTo(n.data);
 	}
+	
+	@Override
+	public boolean equals(Object n){
+		if(n != null && n instanceof Node){
+			Node temp = (Node)n;
+			if(temp.data == null || this.data == null){
+				return false;
+			}
+			return temp.data == this.data;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+		if(data != null){
+			return data.hashCode();
+		}
+		return 0;
+	}
 }
