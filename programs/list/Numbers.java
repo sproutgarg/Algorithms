@@ -67,22 +67,20 @@ Output
 	public static Node sumUp(Node x, Node y){
 		if(x == null) return y;
 		if(y == null) return x;
-		
-		Node z = new Node();
-		z.next = sumUp(x.next, y.next);
+
 		Integer data = x.data + y.data + carry;
 		carry = data / 10;
-		z.data = data % 10;
+		Node z = new Node(data % 10);
+		z.next = sumUp(x.next, y.next);
 		return z;
 	}
 	
 	public static Node carryForward(Node n, long k){
 		if(k == 0 || n == null)	return null;
-		Node z = new Node();
-		z.next = carryForward(n.next, k - 1);
 		Integer data = n.data + carry;
+		Node z = new Node(data % 10);
+		z.next = carryForward(n.next, k - 1);
 		carry = data /10;
-		z.data = data % 10;
 		return z;
 	}
 
