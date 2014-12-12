@@ -1,9 +1,6 @@
 package binary_tree;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.TreeMap;
 
 public class TreeView {
@@ -18,13 +15,66 @@ public class TreeView {
 	 *            horizontal distance. Horizontal distance of a child of a node
 	 *            x is equal to horizontal distance of x minus 1, and that of
 	 *            right child is horizontal distance of x plus 1.
+	 *            
+	 *   TC : O(n)
+	 *   SC : O(n)
+	 *   where n is number of node in tree
 	 */
-	public static void topViewUnordered(){
+	public static void topViewUnordered(Node tree){
+		java.util.HashSet<Integer> set = new HashSet<>();
+		internalTopViewUnorder(tree, 0, set);
 		
+	}
+	private static void internalTopViewUnorder(Node tree, Integer hd, java.util.HashSet<Integer> set){
+		if(tree == null){
+			return;
+		}
+		tree.horizontalDistance = hd;
+		if(set.add(tree.horizontalDistance)){
+			tree.displayNodeHD();
+		}
+		internalTopViewUnorder(tree.leftChild, hd - 1, set);
+		internalTopViewUnorder(tree.rightChild, hd + 1, set);
 	}
 
 	public static void topViewOrdered(Node t) {
-		
+		//just like unordered, only change will be data structure, 
+		//use TreeMap where key is HD, value is Node
+		// then display the treemap
+	}
+	
+	/**
+	 * TC : Theta(2n) or O(n)
+	 * SC : Theta(3n) or O(n) 
+	 * @param tree
+	 */
+	public static void bottomView(Node tree){
+		java.util.TreeMap<Integer, Node> table = new TreeMap<>();
+		internalBottomView(tree, 0, 0, table);
+		for(java.util.Map.Entry<Integer, Node> hdNode : table.entrySet()){
+			hdNode.getValue().displayNodeHDLevel();
+		}
+	}
+	private static void internalBottomView(Node tree, Integer level, Integer hd, java.util.TreeMap<Integer, Node> table){
+		if(tree == null){
+			return;
+		}
+		tree.horizontalDistance = hd;
+		tree.level = level;
+		if(table.containsKey(hd)){
+			Node temp = table.get(hd);
+			/*
+			 * ASSUMPTION : if 2 nodes are at same level and horizontal distance 
+			 * then display the Node that appears while traversing
+			 */
+			if(temp.level < tree.level){
+				table.put(hd, tree);
+			}
+		}else{
+			table.put(hd, tree);
+		}
+		internalBottomView(tree.leftChild, level + 1, hd - 1, table);
+		internalBottomView(tree.rightChild, level + 1, hd + 1, table);
 	}
 	
 	/**
@@ -49,7 +99,8 @@ public class TreeView {
 		java.util.HashSet<Integer> set = new HashSet<Integer>();
 		internalSideView(tree, 0, set);
 	}
-	private static void internalSideView(Node tree, int level, java.util.HashSet<Integer> set){
+	
+ 	private static void internalSideView(Node tree, int level, java.util.HashSet<Integer> set){
 		if(tree == null){
 			return;
 		}
@@ -64,7 +115,34 @@ public class TreeView {
 	
 	public static void main(String...args){
 		testSideView();
+		testTopViewUnorder();
+		testBottomView();
 	}
+	private static void testBottomView(){
+		Node tree = new Node(10);
+		tree.rightChild = new Node(20);
+		tree.rightChild.leftChild = new Node(30);
+		tree.rightChild.leftChild.leftChild = new Node(35);
+		tree.rightChild.rightChild = new Node(40);
+		tree.rightChild.rightChild.leftChild = new Node(50);
+		tree.rightChild.rightChild.rightChild = new Node(60);
+		System.out.print("IN-ORDER BEFORE : ");TreeTraversal.inOrder(tree);
+		System.out.print("\nBOTTOM_VIEW_ORDERED : ");bottomView(tree);
+		System.out.print("\nIN-ORDER AFTER : ");TreeTraversal.inOrder(tree);			
+	}
+	private static void testTopViewUnorder(){
+		Node tree = new Node(10);
+		tree.rightChild = new Node(20);
+		tree.rightChild.leftChild = new Node(30);
+		tree.rightChild.leftChild.leftChild = new Node(35);
+		tree.rightChild.rightChild = new Node(40);
+		tree.rightChild.rightChild.leftChild = new Node(50);
+		tree.rightChild.rightChild.rightChild = new Node(60);
+		System.out.print("IN-ORDER BEFORE : ");TreeTraversal.inOrder(tree);
+		System.out.print("\nTOP_VIEW_UNORDERED : ");topViewUnordered(tree);
+		System.out.print("\nIN-ORDER AFTER : ");TreeTraversal.inOrder(tree);	
+	}
+	
 	private static void testSideView(){
 		Node tree = new Node(10);
 		tree.rightChild = new Node(20);
