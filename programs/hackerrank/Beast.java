@@ -45,54 +45,38 @@ For N=5, 33333 is only possible number.
 For N=11 , 55555533333 and all of permutations of digits are valid numbers, among them, the given number is the largest one.
  */
 public class Beast {
-	public static final String FIVE = "555";
-	public static final String THREE = "33333";
-	
+
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int t = in.nextInt();
-        for(int i = 0; i < t; i++){
-            System.out.println(solve(in.nextInt()));
+        Scanner in=new Scanner(System.in);
+        int tc=in.nextInt();
+        for(int i=0;i<tc;++i){
+            int num=in.nextInt();
+            int reme=(num%15)%3;
+            int five=0;
+            if(reme==1)
+                five=10;
+            else if(reme==2)
+                five=5;
+            int three=num-five;
+            int pt=three/3;
+            int pf=five/5;
+            if(five<0 || three<0)
+                System.out.print("-1");
+            else{
+                for(int j=0;j<pt;++j)
+                    System.out.print("555");
+                for(int k=0;k<pf;++k)
+                    System.out.print("33333");
+            }
+            System.out.println();
         }
     }
-    
-    public static String solve(int n){
-    	String decent = "-1";
-    	System.out.println(n);
-    	int fives = n;
-    	int threes = 0;
-    	while(threes <= n){
-    		if(fives % 3==0 && threes % 5 == 0){
-    			String str=display(fives,threes);
-    			System.out.println(str);
-    			return str;
-    		}
-    		threes += 5;
-    		fives = n - threes;
-    	}
-    	return decent;
-    }
-    public static String display(int five, int three){
-    	System.out.println(five+", "+three);
-    	String str = "";
-    	while(five > 0){
-    		str += FIVE;
-    		five = five - 3;
-    	}
-    	while(three > 0){
-    		str += THREE;
-    		three = three - 5;
-    	}
-    	System.out.println(str.length());
-    	if(str.length()>0){
-    		
-    		return str;
-    	}else{
-    		return "-1";
-    	}
-    }
+}
     /**
      * big test data are taking too long (> 5 seconds)
      */
-    	
-}
+     
+   /** www.github.com/Pulkit07
+      * Problem solved by using a simpler algorithm.
+      * Now each test is taking maximum 2.27 sec.
+      * /
