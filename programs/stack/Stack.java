@@ -88,6 +88,16 @@ public class Stack {
 		Node.printLinkList(head);
 	}
 	
+	/**
+	 * TC : O(N), n is size of the stack
+	 * SC : O(N)
+	 * this function will modify stack 
+	 * will use temporary stack
+	 */
+	public void sort(){
+		
+	}
+	
 	public static void main(String...args){
 		testDeleteMiddle();
 	}

@@ -71,6 +71,10 @@ public class Node implements java.lang.Comparable<Node>{
 		System.out.print("(D:" + data+", HD:" + horizontalDistance + ")");
 	}
 	
+	public void displayNodeHDLevel(){
+		System.out.print("(D:" + data+", HD:" + horizontalDistance + ", L:" + level + ")");
+	}
+	
 	public static void displayNodeList(List<Node> nodeList, boolean isLeftToRight){
 		if(isLeftToRight){
 			for(Node n : nodeList){
