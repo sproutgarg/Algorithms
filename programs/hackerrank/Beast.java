@@ -79,4 +79,4 @@ public class Beast {
    /** www.github.com/Pulkit07
       * Problem solved by using a simpler algorithm.
       * Now each test is taking maximum 2.27 sec.
-      * /
+      */

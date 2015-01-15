@@ -4,9 +4,9 @@ public class FileTesting {
 
 	public static void main(String...args){
 		try{
-			java.io.FileWriter fw = new java.io.FileWriter("c:\\meft_logged");
+			java.io.FileWriter fw = new java.io.FileWriter("c:\\neft_logged");
 			String str="abcdef";
-			fw.write("MEFTSenderBankCountrySupportMEFTRuleHandler.handle() called here\n");
+			fw.write("handle() called here\n");
 			fw.write("stacktrace = "+str);
 			fw.close();
 		}

@@ -21,11 +21,15 @@ ENHANCEMENTS
 countmultiples for given 'N', generalize 
 
 CONCEPTS TO LEARN
-heapify 
+heapify DONE
 KMP Algorithm to implement subString() or Searching for patterns
-DP 
+DP DOING
 Graphs
-String Questions
+String Questions DOING
+Java Garbage Collector, HashMap implementation
+Virtual Memory and Paging
+Elastic Search
+low level design
 
 PAGE COUNT
 array : 2
