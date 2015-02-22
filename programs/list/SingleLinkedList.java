@@ -113,7 +113,38 @@ public class SingleLinkedList {
 	}
 	
 	public static Node mergeSort(Node list){
-		return null;
+		if(list != null && list.next != null){
+			Node mid = getMiddleElement(list);
+			Node midNext = mid.next;
+			mid.next = null;
+			list = mergeSort(list);
+			midNext = mergeSort(midNext);
+			list = mergeSortedListI(list, midNext);
+			Node.printLinkList(list);
+		}
+		return list;
+	}
+	
+	/**
+	 * API : write a function to fetch the middle element of the linked list.
+	 * TC : O(n/2) SC : O(1)
+	 * @param list
+	 * @return
+	 */
+	public static Node getMiddleElement(Node list){
+		if(list == null || list.next == null){
+			return list;
+		}
+		Node mid = list;
+		Node fast = list.next;
+		while(fast != null){
+			fast = fast.next;
+			if(fast != null){
+				fast = fast.next;
+				mid = mid.next;
+			}
+		}
+		return mid;
 	}
 	
 	/**
@@ -142,10 +173,98 @@ public class SingleLinkedList {
 		return result;
 	}
 	
+	/**
+	 * iterative version of merging the 2 sorted link list.
+	 * TC : O(x), x=min(n,m); n,m is length of link list a and b respectively
+	 * @param aList
+	 * @param bList
+	 * @return
+	 */
+	public static Node mergeSortedListI(Node aList, Node bList){
+		if(aList == null){
+			return bList;
+		}
+		if(bList == null){
+			return aList;
+		}
+		Node list = new Node(0);//dummy node
+		Node currentNode = list;
+		while(aList != null && bList!= null){
+			if(aList.compareTo(bList) < 0){ // a < b
+				currentNode.next = aList;
+				aList = aList.next;
+			}else{
+				currentNode.next = bList;
+				bList = bList.next;
+			}
+			currentNode = currentNode.next;
+			currentNode.next = null;
+		}
+		if(aList == null){
+			currentNode.next = bList;
+		}else{
+			currentNode.next = aList;
+		}
+		list = list.next;
+		return list;
+	}
+	
+	/**
+	 * API : reverse the given linked list.
+	 * @param args
+	 */
+	public static Node reverse(Node list){
+		if(list == null || list.next == null) return list;
+		Node n = list;
+		Node next = null;
+		Node p = null;
+
+		while(n != null){
+			next = n.next;
+			n.next = p;
+			p = n;
+			n = next;
+		}
+		return p;
+	}
+	
 	public static void main(String[] args) {
-		testRemoveDuplicates();
-		testmergeSortedListR();
-		testSwap();
+		testReverse();
+//		testMiddleElement();
+//		testRemoveDuplicates();
+//		testmergeSortedList();
+//		testMergeSort();
+//		testSwap();
+	}
+	
+	private static void testReverse(){
+		Node list = new Node(912);
+		list.next = new Node(290);
+		list.next.next = new Node(120);
+		Node.printLinkList(list);
+		list = reverse(list);
+		Node.printLinkList(list);		
+	}
+	
+	private static void testMergeSort(){
+		Node list = new Node(912);
+		list.next = new Node(290);
+		list.next.next = new Node(120);
+		list.next.next.next = new Node(120);
+		list.next.next.next.next = new Node(20);		
+		Node.printLinkList(list);
+		list = mergeSort(list);
+		Node.printLinkList(list);
+	}
+	
+	private static void testMiddleElement(){
+		Node list = new Node(12);
+		list.next = new Node(20);
+		list.next.next = new Node(120);
+		list.next.next.next = new Node(120);
+		list.next.next.next.next = new Node(20);
+		Node.printLinkList(list);
+		System.out.println(getMiddleElement(list));
 	}
 	
 	private static void testRemoveDuplicates(){
@@ -157,7 +276,6 @@ public class SingleLinkedList {
 		Node.printLinkList(list);
 		removeDuplicates(list);
 		Node.printLinkList(list);
-				
 	}
 	
 	private static void testNodeComparsion(){
@@ -189,7 +307,7 @@ public class SingleLinkedList {
 		l = swapKthNodeFromStartAndEnd(l, 7);		Node.printLinkList(l);
 	}
 
-	private static void testmergeSortedListR(){
+	private static void testmergeSortedList(){
 		Node p = new Node(10);
 		p.next = new Node(20);
 		p.next.next = new Node(30);
@@ -200,6 +318,7 @@ public class SingleLinkedList {
 		
 		Node.printLinkList(p);
 		Node.printLinkList(q);
-		Node.printLinkList(mergeSortedListR(p, q));
+		Node.printLinkList(mergeSortedListI(p, q));
+		//Node.printLinkList(mergeSortedListR(p, q));
 	}
 }

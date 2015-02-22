@@ -115,10 +115,21 @@ public class Node implements java.lang.Comparable<Node>{
 	
 	@Override
 	public int compareTo(Node n) {
-		if(this.data == null || n == null || n.data == null){
+		if(this.data == null){
 			return -1;
+		}else if(n == null || n.data == null){
+			return 1;
 		}
 		return this.data.compareTo(n.data);
+	}
+	
+	public int compareData(Integer data){
+		if(this.data == null){
+			return -1;
+		}else if(data == null){
+			return 1;
+		}
+		return this.data.compareTo(data);
 	}
 	
 	@Override

@@ -1,7 +1,5 @@
 package quora;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.math.BigInteger;
 import java.util.Scanner;
@@ -130,6 +128,7 @@ public class Archery {
 /**
 Failed cases:
 input:
+(file)quora_/input15
 
 output: 
 332421414
