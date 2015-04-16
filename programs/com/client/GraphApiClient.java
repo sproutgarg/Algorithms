@@ -9,8 +9,8 @@ public class GraphApiClient {
 	
 	public static void main(String...asd){
 		try {
-			//String inputFileName = "graph_input_files/graph-api-test-input-1";
-			String inputFileName = "graph_input_files/disconnected-graph-cycle-test-input-1";
+			String inputFileName = "graph_input_files/graph-api-test-input-1";
+			//String inputFileName = "graph_input_files/disconnected-graph-cycle-test-input-1";
 			java.io.File file = new java.io.File(inputFileName);
 			com.graph.Graph g = new com.graph.Graph(file);
 			System.out.println(g);

@@ -1,25 +1,25 @@
 package com.graph;
 
 import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.FileReader;
 import java.io.IOException;
-
-import org.apache.commons.collections4.bag.CollectionBag;
-import org.apache.commons.collections4.bag.HashBag;
 
 public class Graph {
 	//number of vertices in the graph
 	private final int V;
 	
-	//adjaceny list in the graph
-	private CollectionBag<Integer>[] adj;
+	//Adjacency list in the graph
+	private List<List<Integer>> adj;
 	
-	@SuppressWarnings("unchecked")
 	private void init(){
-		this.adj = (CollectionBag<Integer>[]) new CollectionBag[this.V];
+		System.out.println("Vertex set size="+V);
+		this.adj = new ArrayList<List<Integer>>(this.V);
+		System.out.println(adj.size());
 		for(int v = 0; v < this.V; v++){
 			//initializing each vertex with empty Bag (HashBag)
-			this.adj[v] = new CollectionBag<Integer>(new HashBag<Integer>());			
+			adj.add(v, new ArrayList<Integer>());
 		}		
 	}
 	public Graph(int V){
@@ -43,21 +43,19 @@ public class Graph {
 	}
 	
 	public void addEdge(int v, int w){
-		this.adj[v].add(w);
-		this.adj[w].add(v);
+		this.adj.get(v).add(w);
+		this.adj.get(w).add(v);
 	}
 	
-	public Iterable<Integer> adj(int v){
-		return this.adj[v];
+	public List<Integer> adj(int v){
+		return this.adj.get(v);
 	}
 	
 	//returns number of edges
-	@SuppressWarnings("unused")
 	public int E(){
 		int e = 0;
 		for(int v = 0; v < this.V; v++){
-			for(Integer w: adj(v))
-				e++;
+			e += adj(v).size();
 		}
 		e /= 2;
 		return e;

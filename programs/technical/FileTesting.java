@@ -1,4 +1,4 @@
-package hit_and_try;
+package technical;
 
 public class FileTesting {
 
