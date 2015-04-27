@@ -1,5 +1,6 @@
 import sys
 import jumble
+import time
 
 def main(letters):
     j = jumble.Jumble(letters)
@@ -7,8 +8,8 @@ def main(letters):
     return
 
 def help():
-    print 'syntax  : cmd-prompt> python main.py <series of alphabets separated by spaces>\n'\
-          'example : cmd-prompt> python main.py n y h t p o'
+    print 'syntax  : cmd-prompt> python main.py <series of alphabets WITHOUT spaces>\n'\
+          'example : cmd-prompt> python main.py nyhtpo'
     return
 
 def validate_input(input):
@@ -21,8 +22,10 @@ def validate_input(input):
     return True
 
 if __name__ == '__main__':
+    start_time = time.time()
     input = sys.argv[1:]
     if(validate_input(input)):
         main(input)
     else:
         help()
+    print "total execution time : %s seconds"%(time.time() - start_time)

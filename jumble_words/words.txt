@@ -76,6 +76,7 @@ abbeys
 abbot
 abbotcy
 abbots
+abcdefghijklmnopqrstuvwxyz
 abdicate
 abdomen
 abdomens
@@ -80364,5 +80365,6 @@ zymoses
 zymosis
 zymotic
 zymurgy
+zyxwvutsrqponmlkjihgfedcba
 zyzzyva
 zyzzyvas
