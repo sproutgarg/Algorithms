@@ -9,6 +9,7 @@ public class FileTesting {
 			fw.write("handle() called here\n");
 			fw.write("stacktrace = "+str);
 			fw.close();
+			
 		}
 		catch(Exception E){
 			E.printStackTrace();

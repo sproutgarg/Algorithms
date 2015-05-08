@@ -35,15 +35,17 @@ class Jumble(object):
             return
                 
         #avoiding the permutation at initial levels, i.e. when fixed part of word (letters[0:i]) cannot exist in the dictionary
-        elif(not self.dictionary.can_exists(word)):
-            return
+       ## elif(not self.dictionary.can_exists(word)):
+         ###   return
         else:
             for j in range(i,len(self.letters)):
                 # below condition handles went same alphabet appears mutliple times in a word
                 if(i != j and self.letters[i] == self.letters[j]):
                     continue
                 self.swap(i, j)
-                self._jumble(i+1)
+                word = ''.join(self.letters[:i+1])
+                if(self.dictionary.can_exists(word)):
+                    self._jumble(i+1)
                 self.swap(i, j) # backtrack : fall backs to original arrangement of letters
 
 # sample test case
@@ -55,9 +57,9 @@ if __name__ == '__main__':
     j = Jumble(letters)
     j.jumble()
     print "total execution time : %s seconds"%(time.time() - start_time)
-    
+    '''
     #input 2 : total execution time : 0.0 seconds
     start_time = time.time()
     j.letters = list('pneumonoultramicroscopicsilicovolcanoconiosis') # (46)longest word in english dictionary (= a supposed lung disease)
     j.jumble()
-    print "total execution time : %s seconds"%(time.time() - start_time)
+    print "total execution time : %s seconds"%(time.time() - start_time)'''
