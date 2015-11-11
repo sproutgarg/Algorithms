@@ -24,7 +24,7 @@ public class EmailUtility {
 
 	private static String HOST = "smtp.gmail.com";
 	private static String USER = "ankur.bmv@gmail.com";
-	private static String PASSWORD = "cg04cv6616";
+	private static String PASSWORD = "";
 	private static String PORT = "465";
 	private static String FROM = "ankur.bmv@gmail.com";
 	private static String TO = "jskfreerunner@gmail.com";
@@ -90,9 +90,9 @@ public class EmailUtility {
 		return true;
 	}
 
-	public static void main(String... args) {
-		String from = "dtripathy@paypal.com";// ankugarg@paypal.com";
-		String to = "dtripathy@paypal.com";// "ankugarg@paypal.com";
+	public static void main(String[] args) {
+		String from = "ankugarg@paypal.com";// ankugarg@paypal.com";
+		String to = "ankugarg@paypal.com";// "ankugarg@paypal.com";
 		String cc[] = null;
 		String subject = "@@@@@@@~~~~~~~~~~!!!EMAIL OVERFLOW!!!~~~~~~~~~~@@@@@@@@";
 //		String htmlText = loadMessageBody().toString();

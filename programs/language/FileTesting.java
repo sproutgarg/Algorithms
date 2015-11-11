@@ -1,4 +1,4 @@
-package technical;
+package language;
 
 public class FileTesting {
 

@@ -1,4 +1,4 @@
-package technical;
+package language;
 
 import java.util.*;
 
