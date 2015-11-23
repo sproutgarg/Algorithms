@@ -1,8 +1,5 @@
 package mathematical;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 public class Factorial {
 	private static final int MAX = 200; 
 	private int[] result;
@@ -57,6 +54,6 @@ public class Factorial {
 }
 /*
  * 1. why cannot Java arrays be initialized with long size, why only int size is allowed ?
- * 2. what happens when N itself cannot be stored in primitive data types ?
+ * 2. what happens when N itself cannot be stored in primitive data types ? what is underline implementation of BigInteger in those cases ?
  * 
  */

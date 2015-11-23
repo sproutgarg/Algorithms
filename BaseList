@@ -1,0 +1,20 @@
+http://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
+http://www.geeksforgeeks.org/remove-duplicates-from-an-unsorted-linked-list/
+http://www.geeksforgeeks.org/pairwise-swap-elements-of-a-given-linked-list/
+http://www.geeksforgeeks.org/practice-questions-for-linked-list-and-recursion/
+http://www.geeksforgeeks.org/intersection-of-two-sorted-linked-lists/
+
+MUST CODE AND SEE FOR SINGLY LINKED LIST
+API merge sort link list
+API reverse link list
+API detect a loop in a link list
+add 2 link lists (recursive algo is more elegant)
+http://www.geeksforgeeks.org/maximum-sum-linked-list-two-sorted-linked-lists-common-nodes/
+
+reverse link list in groups of k
+delete node whose RHS has greater value than it. (use reverse for elegant solution)
+quick sort with an example stating why it is unstable
+link list is a palindrome
+
+BINARY TREE
+create a threaded binary tree out of given a binary tree.

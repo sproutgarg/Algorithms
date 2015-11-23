@@ -1,0 +1,12 @@
+package string;
+
+public class BinaryToWord {
+	public static void main(String[] args){
+		String str = "01001000 01100001 01110000 01110000 01111001 00100000 01000010 01101001 01110010 01110100 01101000 01100100 01100001 01111001 00100001 00100001 00100001 00100000 01000101 01101110 01101010 01101111 01111001 00100000 00111010 00101001 00001101 00001010";
+		String chs[] = str.split(" ");
+		for(String ch : chs){
+			int i = Integer.parseInt(ch,2);
+			System.out.print((char)i);
+		}
+	}
+}
